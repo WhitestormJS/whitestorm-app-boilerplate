@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import alias from 'whs/tools/alias';
 
 const config = {
   entry: './app/app.js',
@@ -19,16 +20,13 @@ const config = {
   },
 
   devServer: {
-    publicPath: '/build/'
+    publicPath: '/build/',
+    stats: { chunks: true }
   },
 
-  plugins: [
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   },
-    // })
-  ]
+  resolve: {
+    alias
+  }
 };
 
 export {
