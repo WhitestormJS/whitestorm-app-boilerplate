@@ -1,12 +1,6 @@
 // Core
 import {App} from '@whs/core/App';
-// import * as THREE from '@whs^three';
 
-// Modules
-// import {ElementModule} from '@whs:app/element';
-// import {SceneModule} from '@whs:app/scene';
-// import {CameraModule} from '@whs:app/camera';
-// import {RenderingModule} from '@whs:app/rendering';
 import {
   ElementModule,
   SceneModule,
