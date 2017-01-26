@@ -8,10 +8,6 @@ import {
   RenderingModule
 } from '@whs:app';
 
-import {
-  MeshBasicMaterial
-} from '@whs^three';
-
 import {OrbitModule} from '@whs:controls/orbit';
 
 import {FancyMaterialModule} from './modules/FancyMaterialModule';
