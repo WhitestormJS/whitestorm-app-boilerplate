@@ -18,10 +18,10 @@ import {
 
 import {OrbitModule} from '@whs:controls/orbit';
 
-import {RedMaterialModule} from './modules/RedMaterialModule';
+import {FancyMaterialModule} from './modules/FancyMaterialModule';
 
 // Components
-import {Sphere} from '@whs+meshes/sphere';
+import {Plane} from '@whs+meshes/Plane';
 import {BasicComponent} from './components/BasicComponent';
 
 const app = new App([
@@ -31,49 +31,71 @@ const app = new App([
   new SceneModule(),
   new CameraModule({
     position: {
-      z: -20
+      z: -15
     }
   }),
-  new RenderingModule(),
+  new RenderingModule({bgColor: 0x000001}),
   new OrbitModule()
 ]);
 
 app.add(new BasicComponent({
   modules: [
-    new RedMaterialModule()
+    new FancyMaterialModule(app)
   ]
 }));
 
 app.start();
-
 ```
 
 ## `./components/BasicComponent.js`
 
 ```javascript
-import {MeshComponent} from '@whs:core/MeshComponent';
-import * as THREE from '@whs^three';
+import {
+  Mesh,
+  IcosahedronGeometry,
+  MeshBasicMaterial
+} from '@whs^three';
+
+import {MeshComponent} from '@whs/core/MeshComponent';
 
 export class BasicComponent extends MeshComponent {
   build() {
-    return new THREE.Mesh(
-      new THREE.SphereGeometry(3, 16, 16),
+    return new Mesh(
+      new IcosahedronGeometry(3, 5),
       this.applyBridge({
-        material: new THREE.MeshBasicMaterial({color: 0xffffff})
+        material: new MeshBasicMaterial({color: 0xffffff})
       }).material
     )
   }
 }
 ```
 
-## `./modules/RedMaterialModule.js`
+## `./modules/FancyMaterialModule.js`
 
 ```javascript
-export class RedMaterialModule {
-  constructor() {
+import {ShaderMaterial} from '@whs^three';
+import {Loop} from '@whs/core/Loop';
+import glsl from 'glslify';
+
+import vertex from './vertex.glsl';
+import fragment from './fragment.glsl';
+
+export class FancyMaterialModule {
+  constructor(app) {
     this.bridge = {
-      material(material) {
-        material.color.setRGB(1, 0, 0);
+      material() {
+        const material = new ShaderMaterial({
+          uniforms: {
+            time: {value: 1.0}
+          },
+          vertexShader: vertex,
+          fragmentShader: fragment
+        });
+
+        new Loop(c => {
+          material.uniforms.time.value += c.getDelta();
+        }).start(app);
+
         return material;
       }
     }
