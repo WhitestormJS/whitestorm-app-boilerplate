@@ -8,12 +8,16 @@ import {
   RenderingModule
 } from '@whs:app';
 
+import {
+  MeshBasicMaterial
+} from '@whs^three';
+
 import {OrbitModule} from '@whs:controls/orbit';
 
-import {RedMaterialModule} from './modules/RedMaterialModule';
+import {FancyMaterialModule} from './modules/FancyMaterialModule';
 
 // Components
-import {Sphere} from '@whs+meshes/sphere';
+import {Plane} from '@whs+meshes/Plane';
 import {BasicComponent} from './components/BasicComponent';
 
 const app = new App([
@@ -23,16 +27,16 @@ const app = new App([
   new SceneModule(),
   new CameraModule({
     position: {
-      z: -20
+      z: -15
     }
   }),
-  new RenderingModule(),
+  new RenderingModule({bgColor: 0x000001}),
   new OrbitModule()
 ]);
 
 app.add(new BasicComponent({
   modules: [
-    new RedMaterialModule()
+    new FancyMaterialModule(app)
   ]
 }));
 

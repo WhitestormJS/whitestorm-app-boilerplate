@@ -10,6 +10,12 @@ const config = {
         test: /\.js$/,
         exclude: /(node_modules\/(?!whs)|bower_components)/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.(glsl|frag|vert)$/, loader: 'raw-loader', exclude: /node_modules/
+      },
+      {
+        test: /\.(glsl|frag|vert)$/, loader: 'glslify-loader', exclude: /node_modules/
       }
     ]
   },

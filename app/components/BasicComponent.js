@@ -1,12 +1,17 @@
-import {MeshComponent} from 'whs/src/core/MeshComponent';
-import * as THREE from 'whs/src/three';
+import {
+  Mesh,
+  IcosahedronGeometry,
+  MeshBasicMaterial
+} from '@whs^three';
+
+import {MeshComponent} from '@whs/core/MeshComponent';
 
 export class BasicComponent extends MeshComponent {
   build() {
-    return new THREE.Mesh(
-      new THREE.SphereGeometry(3, 16, 16),
+    return new Mesh(
+      new IcosahedronGeometry(3, 5),
       this.applyBridge({
-        material: new THREE.MeshBasicMaterial({color: 0xffffff})
+        material: new MeshBasicMaterial({color: 0xffffff})
       }).material
     )
   }
