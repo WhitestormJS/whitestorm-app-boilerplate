@@ -1,7 +1,7 @@
 # whitestorm-app-boilerplate
 [WIP] WhitestormJS 2 App boilerplate
 
-<img src="http://i.giphy.com/26xByvPQnomT4eANy.gif" width="100%" height="100%"/>
+<a href="http://whs-boilerplate-app.surge.sh/"><img src="http://i.giphy.com/26xByvPQnomT4eANy.gif" width="100%" height="100%"/></a>
 
 ## `app.js`
 
