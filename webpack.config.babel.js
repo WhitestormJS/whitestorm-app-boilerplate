@@ -1,6 +1,8 @@
 import webpack from 'webpack';
 import alias from 'whs/tools/alias';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const config = {
   entry: './app/app.js',
 
@@ -20,8 +22,17 @@ const config = {
     ]
   },
 
+  plugins: isProduction
+    ? [
+      new webpack.LoaderOptionsPlugin({
+        minimize: true
+      }),
+      new webpack.optimize.UglifyJsPlugin()
+    ]
+    : [],
+
   output: {
-    path: '/build/',
+    path: './build/',
     filename: 'bundle.js'
   },
 
