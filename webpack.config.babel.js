@@ -1,3 +1,4 @@
+import path from 'path';
 import webpack from 'webpack';
 import alias from 'whs/tools/alias';
 
@@ -32,7 +33,7 @@ const config = {
     : [],
 
   output: {
-    path: './build/',
+    path: path.join(__dirname, './build/'),
     filename: 'bundle.js'
   },
 
