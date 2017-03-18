@@ -1,4 +1,4 @@
-import {ShaderMaterial} from '@three';
+import {ShaderMaterial} from 'three';
 import {Loop} from '@whs/core/Loop';
 import glsl from 'glslify';
 

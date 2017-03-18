@@ -2,7 +2,7 @@ import {
   Mesh,
   IcosahedronGeometry,
   MeshBasicMaterial
-} from '@three';
+} from 'three';
 
 import {MeshComponent} from '@whs/core/MeshComponent';
 
