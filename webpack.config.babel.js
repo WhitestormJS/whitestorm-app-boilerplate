@@ -12,7 +12,16 @@ const config = {
       {
         test: /\.js$/,
         exclude: /(node_modules\/(?!whs)|bower_components)/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        query: {
+          plugins: [
+            'add-module-exports',
+            'transform-decorators-legacy',
+            'transform-class-properties',
+            'transform-object-rest-spread',
+            'transform-runtime'
+          ]
+        }
       },
       {
         test: /\.(glsl|frag|vert)$/, loader: 'raw-loader', exclude: /node_modules/
@@ -43,7 +52,9 @@ const config = {
   },
 
   resolve: {
-    alias
+    alias,
+    symlinks: false,
+    modules: [path.resolve('node_modules')]
   }
 };
 
