@@ -19,7 +19,7 @@ const config = {
             'transform-decorators-legacy',
             'transform-class-properties',
             'transform-object-rest-spread',
-            'transform-runtime'
+            ['transform-runtime', {helpers: false, polyfill: false, regenerator: true}]
           ]
         }
       },
