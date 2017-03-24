@@ -9,18 +9,27 @@ import {
   RenderingModule
 } from '@whs:app';
 
+// Physics Modules
+import {
+    WorldModule,
+    PlaneModule,
+    SphereModule
+} from 'physics-module-ammonext';
+
 // Modules
 import {OrbitModule} from '@whs:controls/orbit';
 import {FancyMaterialModule} from './modules/FancyMaterialModule';
 
 // Components
 import {BasicComponent} from './components/BasicComponent';
-import {PhysicsSphere} from './components/PhysicsSphere';
-import {PhysicsPlane} from './components/PhysicsPlane';
 
-// World Module
-import {WorldModule} from '../node_modules/physics-module-ammonext/src/modules/WorldModule';
+// Mesh Components
+import {
+    Plane,
+    Sphere
+} from '@whs+meshes';
 
+// App
 const app = new App([
   new WorldModule({
     ammo: 'http://localhost:8080/node_modules/three/examples/js/libs/ammo.js'
@@ -45,8 +54,38 @@ app.add(new BasicComponent({
   ]
 }));
 
-// Physics Objects
-new PhysicsSphere({position: {y: 50}}).addTo(app);
-new PhysicsPlane().addTo(app);
+// Physics Plane
+new Plane({
+    geometry: {
+        width: 100,
+        height: 100
+    },
+    rotation: {
+        x: -Math.PI / 2
+    },
+    material: new THREE.MeshPhongMaterial({color: 0x447F8B}),
+    modules: [
+        new PlaneModule({
+            mass: 0
+        })
+    ]
+}).addTo(app);
+
+// Physics Sphere
+new Sphere({
+    position: {y: 40},
+    geometry: {
+        radius:         2,
+        widthSegments:  32,
+        heightSegments: 32
+    },
+    material: new THREE.MeshNormalMaterial(),
+    modules: [
+        new SphereModule({
+            mass:        10,
+            restitution: 2.5
+        })
+    ]
+}).addTo(app);
 
 app.start();
