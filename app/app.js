@@ -9,6 +9,10 @@ import {
   RenderingModule
 } from '@whs:app';
 
+import {
+    AmbientLight
+} from '@whs+lights';
+
 // Physics Modules
 import {
     WorldModule,
@@ -48,11 +52,23 @@ const app = new App([
   new OrbitModule()
 ]);
 
-app.add(new BasicComponent({
-  modules: [
-    new FancyMaterialModule(app)
-  ]
-}));
+// Physics Sphere
+new Sphere({
+    position: {y: 40},
+    geometry: {
+        radius:         2,
+        widthSegments:  32,
+        heightSegments: 32
+    },
+    material: new THREE.MeshNormalMaterial(),
+    modules: [
+        new FancyMaterialModule(app),
+        new SphereModule({
+            mass:        10,
+            restitution: 2.5
+        })
+    ]
+}).addTo(app);
 
 // Physics Plane
 new Plane({
@@ -66,26 +82,17 @@ new Plane({
     material: new THREE.MeshPhongMaterial({color: 0x447F8B}),
     modules: [
         new PlaneModule({
-            mass: 0
+            mass: 0,
+            restitution: 0.333
         })
     ]
 }).addTo(app);
 
-// Physics Sphere
-new Sphere({
-    position: {y: 40},
-    geometry: {
-        radius:         2,
-        widthSegments:  32,
-        heightSegments: 32
-    },
-    material: new THREE.MeshNormalMaterial(),
-    modules: [
-        new SphereModule({
-            mass:        10,
-            restitution: 2.5
-        })
-    ]
+// Global light
+new AmbientLight({
+    light: {
+        intensity: 0.7
+    }
 }).addTo(app);
 
 app.start();

@@ -28,10 +28,6 @@ const config = {
       },
       {
         test: /\.(glsl|frag|vert)$/, loader: 'glslify-loader', exclude: /node_modules/
-      },
-      {
-        test: /\.wasm$/,
-        loaders: ['wasm-loader']
       }
     ]
   },
