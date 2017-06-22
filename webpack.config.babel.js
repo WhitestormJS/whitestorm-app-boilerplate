@@ -37,9 +37,10 @@ const config = {
       new webpack.LoaderOptionsPlugin({
         minimize: true
       }),
-      new webpack.optimize.UglifyJsPlugin()
+      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.ModuleConcatenationPlugin()
     ]
-    : [],
+    : [new webpack.optimize.ModuleConcatenationPlugin()],
 
   output: {
     path: path.join(__dirname, './build/'),
