@@ -1,19 +1,13 @@
-// Core
-import {App} from '@whs/core/App';
-
 import {
+  App,
   ElementModule,
+  Plane,
   SceneModule,
   CameraModule,
+  OrbitControlsModule,
   RenderingModule
-} from '@whs:app';
-
-import {OrbitModule} from '@whs:controls/orbit';
-
+} from 'whs';
 import {FancyMaterialModule} from './modules/FancyMaterialModule';
-
-// Components
-import {Plane} from '@whs+meshes/Plane';
 import {BasicComponent} from './components/BasicComponent';
 
 const app = new App([
@@ -27,7 +21,7 @@ const app = new App([
     }
   }),
   new RenderingModule({bgColor: 0x000001}),
-  new OrbitModule()
+  new OrbitControlsModule()
 ]);
 
 app.add(new BasicComponent({
