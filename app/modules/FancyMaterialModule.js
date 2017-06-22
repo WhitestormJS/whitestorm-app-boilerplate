@@ -1,5 +1,5 @@
 import {ShaderMaterial} from 'three';
-import {Loop} from '@whs/core/Loop';
+import {Loop} from 'whs';
 import glsl from 'glslify';
 
 import vertex from './vertex.glsl';

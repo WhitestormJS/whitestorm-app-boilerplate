@@ -4,7 +4,7 @@ import {
   MeshBasicMaterial
 } from 'three';
 
-import {MeshComponent} from '@whs/core/MeshComponent';
+import {MeshComponent} from 'whs';
 
 export class BasicComponent extends MeshComponent {
   build() {
