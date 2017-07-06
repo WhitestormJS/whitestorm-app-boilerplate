@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/WhitestormJS/whitestorm-app-boilerplate#readme",
   "dependencies": {
-    "whs": "2.0.0",
+    "whs": "2.1.1",
     "present": "^1.0.0"
   },
   "devDependencies": {
