@@ -1,25 +1,24 @@
 import {
   App,
+  DefineModule,
   ElementModule,
-  Plane,
-  SceneModule,
-  CameraModule,
   OrbitControlsModule,
-  RenderingModule
+  PerspectiveCamera,
+  Plane,
+  RenderingModule,
+  SceneModule
 } from 'whs';
 import {FancyMaterialModule} from './modules/FancyMaterialModule';
 import {BasicComponent} from './components/BasicComponent';
 
 const app = new App([
-  new ElementModule({
-    container: document.getElementById('app')
-  }),
+  new ElementModule(document.getElementById('app')),
   new SceneModule(),
-  new CameraModule({
+  new DefineModule('camera', new PerspectiveCamera({
     position: {
       z: -15
     }
-  }),
+  })),
   new RenderingModule({bgColor: 0x000001}),
   new OrbitControlsModule()
 ]);
